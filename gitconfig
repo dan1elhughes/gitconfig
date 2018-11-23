@@ -1,7 +1,7 @@
 [user]
 {{ _if_name }}	name = {{ GIT_NAME }}
 {{ _if_email }}	email = {{ GIT_EMAIL }}
-{{ _if_key }}	signingkey = {{ GIT_KEY }}
+{{ _if_key }}	signingkey = {{ GIT_SIGNING_KEY }}
 [alias]
 
 	# Add all changes
