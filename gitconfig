@@ -1,0 +1,109 @@
+[user]
+{{ _if_name }}	name = {{ GIT_NAME }}
+{{ _if_email }}	email = {{ GIT_EMAIL }}
+{{ _if_key }}	signingkey = {{ GIT_KEY }}
+[alias]
+
+	# Add all changes
+	a = "add --all --verbose"
+
+	# Shorthands
+	c = "commit --verbose"
+	d = "diff"
+	f = "fetch --all --prune"
+	p = "push"
+	pf = "push --force-with-lease"
+
+	# Log with a pretty graph and extra details
+	l = "log \
+		--branches \
+		--graph \
+		--pretty=format:'%Cred%h%Creset %Cgreen%cd%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' \
+		-n 10 \
+		--all \
+		--date=short"
+
+	# Show the files changed in the last few commits
+	ls = "log \
+		-n 5 \
+		--pretty=format:'%Cred%h%Creset %s %C(bold blue)<%an>%Creset' \
+		--numstat"
+
+	# Print out all defined git aliases
+	aliases = "config --get-regexp alias"
+
+	# Start repository with an empty commit for rebasing purposes
+	start = "commit --allow-empty -m 'Initial commit'"
+
+	# Edit the message of the last commit
+	reword = "commit -v --amend --only"
+
+	# Combine the staging area with the last commit without editing the message
+	extend = "commit -v --amend --no-edit"
+
+	# Both reword and extend
+	amend = "commit -v --amend"
+
+	# Remove a given file from the staging area
+	unstage = "reset HEAD --"
+
+	# Abandon all changes to a file since the last commit
+	forget = "checkout --"
+
+	# Pop last commit out of the history without losing file changes
+	pop = "reset HEAD^"
+
+	# Show which commits are safe to amend/rebase
+	unpushed = "log @{u}.."
+
+	# Show all remotes
+	remotes = "remote -v"
+
+	# Show all branches
+	branches = "for-each-ref --format='%(refname:short)' refs/heads"
+
+	# Start new feature branch with the given name
+	feature = "!f() { echo feature/$@ | sed -e 's/ /-/g' | xargs git checkout -b; }; f"
+
+	# Start new bugfix branch with the given name
+	bugfix = "!f() { echo bugfix/$@ | sed -e 's/ /-/g' | xargs git checkout -b; }; f"
+
+	# Show which branches have been merged with the given main branch
+	merged = "!f() { git branch --merged $1 | grep -v master | grep -v $1; }; f"
+
+	# Show which branches have been merged with the given main branch on the remote
+	merged-r = "!f() { git branch -r --merged $1 | grep -v master | grep -v $1 | sed -e 's/\\origin\\///g'; }; f"
+
+	# Track the current branch with the same name on the remote
+	track = "!f() { git branch -u origin/`git rev-parse --abbrev-ref HEAD`; }; f"
+
+	# Update the master branch of the fork
+	forkup = "!f() { git checkout master && git f && git merge upstream/master --ff-only; }; f"
+
+	# Generate .gitignore files from passed arguments, i.e. "git ignore node,angular"
+	ignore = "!f() { curl -sSL \"gitignore.io/api/$@\"; }; f"
+[branch]
+	autosetuprebase = always
+[push]
+	default = current
+[core]
+	autocrlf = input
+	editor = '{{ GIT_EDITOR }}'
+[color]
+	ui = auto
+[color "diff"]
+	commit = "green bold"
+	frag = "magenta bold"
+	meta = "yellow bold"
+	new = "green bold"
+	old = "red bold"
+	whitespace = "red reverse"
+[color "diff-highlight"]
+	newHighlight = "green bold 22"
+	newNormal = "green bold"
+	oldHighlight = "red bold 52"
+	oldNormal = "red bold"
+[commit]
+{{ _if_key }}	gpgsign = true
+[status]
+	showUntrackedFiles = all
