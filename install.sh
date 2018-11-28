@@ -18,5 +18,9 @@ sed -e "s/{{ GIT_SIGNING_KEY }}/$GIT_SIGNING_KEY/g" | \
 sed -e "s/{{ GIT_EDITOR }}/$GIT_EDITOR/g" \
 > "$HOME/.gitconfig"
 
-# Done!
 echo ":: $HOME/.gitconfig"
+
+if [ -d "$HOME/.oh-my-zsh/custom" ]; then
+	cp "./aliases.zsh" "$HOME/.oh-my-zsh/custom/git.zsh"
+	echo ":: $HOME/.oh-my-zsh/custom/git.zsh"
+fi
