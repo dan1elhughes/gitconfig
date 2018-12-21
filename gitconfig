@@ -107,3 +107,5 @@
 {{ _if_key }}	gpgsign = true
 [status]
 	showUntrackedFiles = all
+[url "ssh://git@github.com/monzo/"]
+	insteadOf = https://github.com/monzo/
