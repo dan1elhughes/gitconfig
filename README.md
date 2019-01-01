@@ -9,7 +9,7 @@ Create `.env` and fill in:
 ```
 GIT_EMAIL="you@email.com"
 GIT_NAME="Your Name"
-GIT_KEY="Y0URS1GN1NGK3Y"
+GIT_SIGNING_KEY="Y0URS1GN1NGK3Y"
 GIT_EDITOR="nano"
 ```
 
