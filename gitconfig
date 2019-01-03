@@ -77,6 +77,9 @@
 	# Track the current branch with the same name on the remote
 	track = "!f() { git branch -u origin/`git rev-parse --abbrev-ref HEAD`; }; f"
 
+	# Pull (fast-forward only) the given branch without checking it out
+	up = "!f() { git fetch origin $1:$1; }; f"
+
 	# Update the master branch of the fork
 	forkup = "!f() { git checkout master && git f && git merge upstream/master --ff-only; }; f"
 
