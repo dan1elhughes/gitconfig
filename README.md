@@ -13,6 +13,6 @@ GIT_SIGNING_KEY="Y0URS1GN1NGK3Y"
 GIT_EDITOR="nano"
 ```
 
-Then run `sh install.sh` to template out the config into `~/.gitconfig`.
+Then run `bash install.sh` to template out the config into `~/.gitconfig`.
 
 *Note that this is a dumb installer - back up existing config first*
