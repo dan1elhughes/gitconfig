@@ -85,6 +85,9 @@
 
 	# Generate .gitignore files from passed arguments, i.e. "git ignore node,angular"
 	ignore = "!f() { curl -sSL \"gitignore.io/api/$@\"; }; f"
+
+	# Print the URL for creating a PR on the current branch
+	pr = "!f() { echo https://`git config --get remote.origin.url | sed -e 's/git@//g' -e 's/\\.git//g' -e 's/:/\\//g'`/compare/master...`git rev-parse --abbrev-ref HEAD`; }; f"
 [branch]
 	autosetuprebase = always
 [push]
