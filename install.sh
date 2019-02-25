@@ -14,8 +14,7 @@ sed -e "s/{{ GIT_EMAIL }}/$GIT_EMAIL/g" | \
 sed -e "s/{{ _if_name }}/$_if_name/g" | \
 sed -e "s/{{ GIT_NAME }}/$GIT_NAME/g" | \
 sed -e "s/{{ _if_key }}/$_if_key/g" | \
-sed -e "s/{{ GIT_SIGNING_KEY }}/$GIT_SIGNING_KEY/g" | \
-sed -e "s/{{ GIT_EDITOR }}/$GIT_EDITOR/g" \
+sed -e "s/{{ GIT_SIGNING_KEY }}/$GIT_SIGNING_KEY/g" \
 > "$HOME/.gitconfig"
 
 echo ":: $HOME/.gitconfig"

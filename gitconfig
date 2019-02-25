@@ -94,7 +94,6 @@
 	default = current
 [core]
 	autocrlf = input
-	editor = '{{ GIT_EDITOR }}'
 [color]
 	ui = auto
 [color "diff"]
