@@ -92,6 +92,8 @@
 	autosetuprebase = always
 [push]
 	default = current
+[fetch]
+	prune = true
 [core]
 	autocrlf = input
 [color]
