@@ -96,6 +96,7 @@
 	prune = true
 [core]
 	autocrlf = input
+	pager = "diff-so-fancy | less --tabs=4 -RFX"
 {{ _if_editor }}	editor = "{{ GIT_EDITOR }}"
 [color]
 	ui = auto
