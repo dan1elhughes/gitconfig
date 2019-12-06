@@ -1,84 +1,96 @@
-# Add all changes
-a = "add --all --verbose"
+# Include this in your own .gitconfig by using the
+# [include] directive with the path to this file
+#
+# [include]
+#    path = ~/.gitconfig.aliases
+#
+# If you don't have any existing includes, you can add this via the following command
+#
+#   git config --global include.path ~/.gitconfig.aliases
 
-# Shorthands
-c = "commit --verbose"
-d = "diff"
-f = "fetch --all --prune"
-p = "push"
-pf = "push --force-with-lease"
+[alias]
 
-# Log with a pretty graph and extra details
-l = "log \
-    --branches \
-    --graph \
-    --pretty=format:'%Cred%h%Creset %Cgreen%cd%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' \
-    -n 10 \
-    --all \
-    --date=short"
+    # Add all changes
+    a = "add --all --verbose"
 
-# Show the files changed in the last few commits
-ls = "log \
-    -n 5 \
-    --pretty=format:'%Cred%h%Creset %s %C(bold blue)<%an>%Creset' \
-    --numstat"
+    # Shorthands
+    c = "commit --verbose"
+    d = "diff"
+    f = "fetch --all --prune"
+    p = "push"
+    pf = "push --force-with-lease"
 
-# Print out all defined git aliases
-aliases = "config --get-regexp alias"
+    # Log with a pretty graph and extra details
+    l = "log \
+        --branches \
+        --graph \
+        --pretty=format:'%Cred%h%Creset %Cgreen%cd%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' \
+        -n 10 \
+        --all \
+        --date=short"
 
-# Start repository with an empty commit for rebasing purposes
-start = "commit --allow-empty -m 'Initial commit'"
+    # Show the files changed in the last few commits
+    ls = "log \
+        -n 5 \
+        --pretty=format:'%Cred%h%Creset %s %C(bold blue)<%an>%Creset' \
+        --numstat"
 
-# Edit the message of the last commit
-reword = "commit -v --amend --only"
+    # Print out all defined git aliases
+    aliases = "config --get-regexp alias"
 
-# Combine the staging area with the last commit without editing the message
-extend = "commit -v --amend --no-edit"
+    # Start repository with an empty commit for rebasing purposes
+    start = "commit --allow-empty -m 'Initial commit'"
 
-# Both reword and extend
-amend = "commit -v --amend"
+    # Edit the message of the last commit
+    reword = "commit -v --amend --only"
 
-# Remove a given file from the staging area
-unstage = "reset HEAD --"
+    # Combine the staging area with the last commit without editing the message
+    extend = "commit -v --amend --no-edit"
 
-# Abandon all changes to a file since the last commit
-forget = "checkout --"
+    # Both reword and extend
+    amend = "commit -v --amend"
 
-# Pop last commit out of the history without losing file changes
-pop = "reset HEAD^"
+    # Remove a given file from the staging area
+    unstage = "reset HEAD --"
 
-# Show which commits are safe to amend/rebase
-unpushed = "log @{u}.."
+    # Abandon all changes to a file since the last commit
+    forget = "checkout --"
 
-# Show all remotes
-remotes = "remote -v"
+    # Pop last commit out of the history without losing file changes
+    pop = "reset HEAD^"
 
-# Show all branches
-branches = "for-each-ref --format='%(refname:short)' refs/heads"
+    # Show which commits are safe to amend/rebase
+    unpushed = "log @{u}.."
 
-# Start new feature branch with the given name
-feature = "!f() { echo feature/$@ | sed -e 's/ /-/g' | xargs git checkout -b; }; f"
+    # Show all remotes
+    remotes = "remote -v"
 
-# Start new bugfix branch with the given name
-bugfix = "!f() { echo bugfix/$@ | sed -e 's/ /-/g' | xargs git checkout -b; }; f"
+    # Show all branches
+    branches = "for-each-ref --format='%(refname:short)' refs/heads"
 
-# Show which branches have been merged with the given main branch
-merged = "!f() { git branch --merged $1 | grep -v master | grep -v $1; }; f"
+    # Start new feature branch with the given name
+    feature = "!f() { echo feature/$@ | sed -e 's/ /-/g' | xargs git checkout -b; }; f"
 
-# Show which branches have been merged with the given main branch on the remote
-merged-r = "!f() { git branch -r --merged $1 | grep -v master | grep -v $1 | sed -e 's/\\origin\\///g'; }; f"
+    # Start new bugfix branch with the given name
+    bugfix = "!f() { echo bugfix/$@ | sed -e 's/ /-/g' | xargs git checkout -b; }; f"
 
-# Track the current branch with the same name on the remote
-track = "!f() { git branch -u origin/`git rev-parse --abbrev-ref HEAD`; }; f"
+    # Show which branches have been merged with the given main branch
+    merged = "!f() { git branch --merged $1 | grep -v master | grep -v $1; }; f"
 
-# Pull (fast-forward only) the given branch without checking it out
-up = "!f() { git fetch origin $1:$1; }; f"
+    # Show which branches have been merged with the given main branch on the remote
+    merged-r = "!f() { git branch -r --merged $1 | grep -v master | grep -v $1 | sed -e 's/\\origin\\///g'; }; f"
 
-# Update the master branch of the fork
-forkup = "!f() { git checkout master && git f && git merge upstream/master --ff-only; }; f"
+    # Track the current branch with the same name on the remote
+    track = "!f() { git branch -u origin/`git rev-parse --abbrev-ref HEAD`; }; f"
 
-# Generate .gitignore files from passed arguments, i.e. "git ignore node,angular"
-ignore = "!f() { curl -sSL \"gitignore.io/api/$@\"; }; f"
+    # Pull (fast-forward only) the given branch without checking it out
+    up = "!f() { git fetch origin $1:$1; }; f"
 
-# Open the URL for creating a PR on the current branch
-pr = "!f() { open https://`git config --get remote.origin.url | sed -e 's/git@//g' -e 's/\\.git//g' -e 's/:/\\//g'`/pull/new/`git rev-parse --abbrev-ref HEAD`; }; f"
+    # Update the master branch of the fork
+    forkup = "!f() { git checkout master && git f && git merge upstream/master --ff-only; }; f"
+
+    # Generate .gitignore files from passed arguments, i.e. "git ignore node,angular"
+    ignore = "!f() { curl -sSL \"gitignore.io/api/$@\"; }; f"
+
+    # Open the URL for creating a PR on the current branch
+    pr = "!f() { open https://`git config --get remote.origin.url | sed -e 's/git@//g' -e 's/\\.git//g' -e 's/:/\\//g'`/pull/new/`git rev-parse --abbrev-ref HEAD`; }; f"
